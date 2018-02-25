@@ -1,0 +1,100 @@
+<app-header></app-header>
+<div class="container" id="card">
+  <div class="card" *ngIf="Client" >
+    <div class="card-content">
+      <span class="card-title">
+         Welcome {{Client.title}}. {{Client.firstname}} {{Client.lastname}}
+      </span>
+      <div class="divider"></div>
+      <br>
+      <span class="card-title">Information</span>
+      <div class="row" id="information">
+        <div class="col s6 m4">
+          Passport Number
+        </div>
+        <div class="col s4 m4 hide-on-small-only">
+          Email
+        </div>
+        <div class="col s6 m4">
+          Phone Number
+        </div>
+        <div class="col s6 m4">
+          {{Client.passport}}
+        </div>
+        <div class="col s4 m4 hide-on-small-only">
+          {{Client.email}}
+        </div>
+        <div class="col s6 m4">
+          {{Client.phone}}
+        </div>
+      </div>
+
+      <span class="card-title">Coordinates</span>
+      <div class="row" id="coordinates">
+        <div class="col s12 m12">
+          Address
+        </div>
+        <div class="col s12 m12">
+          {{Client.address}},
+          <br>{{Client.city}}, {{Client.country}}
+        </div>
+      </div>
+      <br>
+      <div class="card-title">Your flight<span *ngIf=isRoundTrip>s</span></div>
+      <div class="divider"></div>
+      <br>
+      <div class="row valign-wrapper">
+        <div class="col s3 m2 center" id="logo">
+          <img
+            src="../../assets/images/logos/Plane-Logo.png" class="logo"
+            alt="">
+        </div>
+        <div class="col s3 m3 center">
+          <span class="one-flight-data">{{firstFlight.departure_time}}</span><br>
+          <span class="one-flight-data">{{firstFlight.from}}</span>
+        </div>
+        <div class="col s3 m2 center">
+          <div class="material-icons">flight_takeoff</div>
+          <div class="one-flight-data-iata">{{firstFlight.duration}}</div>
+        </div>
+        <div class="col s3 m3 center">
+          <span class="one-flight-data"> {{firstFlight.arrival_time}}</span><br>
+          <span class="one-flight-data"> {{firstFlight.to}} </span>
+        </div>
+        <div class="col s3 m3 center">
+        <span class="one-flight-data">
+          <div class="card-title">{{firstFlight.price}}</div>
+        </span>
+        </div>
+      </div>
+      <div class="divider" *ngIf=isRoundTrip></div>
+      <br *ngIf=isRoundTrip>
+      <div *ngIf=isRoundTrip class="row valign-wrapper">
+        <div class="col s3 m2 center">
+          <img
+            src="../../assets/images/logos/Plane-Logo.png" class="logo"
+            alt="" width="50">
+        </div>
+        <div class="col s3 m3 center">
+          <span class="one-flight-data">{{roundTrip.departure_time}}</span><br>
+          <span class="one-flight-data">{{roundTrip.from}}</span>
+        </div>
+        <div class="col s3 m2 center">
+          <div class="material-icons">flight_land</div>
+          <div class="one-flight-data-iata">{{roundTrip.duration}}</div>
+        </div>
+        <div class="col s3 m3 center">
+          <span class="one-flight-data"> {{roundTrip.arrival_time}}</span><br>
+          <span class="one-flight-data"> {{roundTrip.to}} </span>
+        </div>
+        <div class="col s3 m3 center">
+        <span class="one-flight-data">
+          <div class="card-title">{{roundTrip.price}}</div>
+        </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <button class="btn orange right" (click)="generatePDF()">Get your ticket</button>
+</div>

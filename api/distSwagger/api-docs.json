@@ -1,0 +1,1076 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Let's fly API",
+    "description": "Sample spec for Let's fly"
+  },
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/flights_from/{_iata}": {
+      "get": {
+        "tags": [
+          "- Api Search Iata First Direction"
+        ],
+        "description": "Get list of flights for first direction with iata as search key",
+        "operationId": "/flights_from/{_iata}",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "_iata",
+          "in": "path",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "list of let's fly flights ",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/api/flights_to/{_iata}": {
+      "get": {
+        "tags": [
+          "- Api Search Iata Second Direction"
+        ],
+        "description": "Get list of flights for second direction with iata as search key",
+        "operationId": "/flights_to/{_iata}",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "_iata",
+          "in": "path",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "list of let's fly flights ",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/api/flights_from/{_iata}/date/{_date}": {
+      "get": {
+        "tags": [
+          "- Api Search Iata & Date: First Direction"
+        ],
+        "description": "Get list of flights for first direction with iata and date as search key",
+        "operationId": "/flights_from/{_iata}/date/{_date}",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "_iata",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "_date",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of let's fly flights ",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/api/flights_to/{_iata}/date/{_date}": {
+      "get": {
+        "tags": [
+          "- Api Search Iata & Date: Second Direction"
+        ],
+        "description": "Get list of flights for second direction with iata and date as search key",
+        "operationId": "/flights_to/{_iata}/date/{_date}",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "_iata",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "_date",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of let's fly flights ",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/api/flights/from/{_fromiata}/to/{_toiata}": {
+      "get": {
+        "tags": [
+          "- Api Search Iata : Search with Departure and Destination IATA"
+        ],
+        "description": "Get list of flights  with iata of both departure and destination search key",
+        "operationId": "/flights/from/{_fromiata}/to/{_toiata}",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "_fromiata",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "_toiata",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of let's fly flights ",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/api/flights/from/{_fromiata}/to/{_toiata}/date/{_date}": {
+      "get": {
+        "tags": [
+          "- Api Search Iata : Search with Departure and Destination IATA & Date"
+        ],
+        "description": "Get list of flights  with iata of both departure and destination and date as search keys",
+        "operationId": "/flights/from/{_fromiata}/to/{_toiata}/date/{_date}",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "_fromiata",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "_toiata",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "_date",
+            "in": "path",
+            "description": "Elements to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of let's fly flights ",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/airports": {
+      "post": {
+        "tags": [
+          "- Airports"
+        ],
+        "description": "Get list of airports to the search page",
+        "operationId": "/search",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "list of airports",
+            "schema": {
+              "$ref": "#/definitions/airports"
+            }
+          }
+        }
+      }
+    },
+    "/getOtherCompaniesFlights": {
+      "post": {
+        "tags": [
+          "- Other Companies flights"
+        ],
+        "description": "Get list of flights",
+        "operationId": "/result",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string",
+          "schema": {
+            "$ref": "#/definitions/othercompanies"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "List of available flights",
+            "schema": {
+              "$ref": "#/definitions/othercompanies_succes"
+            }
+          },
+          "404": {
+            "description": "No result found",
+            "schema": {
+              "$ref": "#/definitions/failure"
+            }
+          }
+        }
+      }
+    },
+    "/getLetsFlyFlights": {
+      "post": {
+        "tags": [
+          "- Lets Fly flights"
+        ],
+        "description": "Get list of flights",
+        "operationId": "/result",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string",
+          "schema": {
+            "$ref": "#/definitions/letsflyflights"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "List of available flights",
+            "schema": {
+              "$ref": "#/definitions/letsflyflights_succes"
+            }
+          },
+          "404": {
+            "description": "No result found",
+            "schema": {
+              "$ref": "#/definitions/failure"
+            }
+          }
+        }
+      }
+    },
+    "/getSelectedFlightsInfo": {
+      "post": {
+        "tags": [
+          "- Selected Flights Informations"
+        ],
+        "description": "Get selected flights informations for booking (Go and back flights)",
+        "operationId": "/booking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string",
+          "schema": {
+            "$ref": "#/definitions/booking_infos"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "List of available flights",
+            "schema": {
+              "$ref": "#/definitions/booking_infos_succes"
+            }
+          },
+          "404": {
+            "description": "No result found",
+            "schema": {
+              "$ref": "#/definitions/failure"
+            }
+          }
+        }
+      }
+    },
+    "/booking": {
+      "post": {
+        "tags": [
+          "- Booking"
+        ],
+        "description": "Set Booking informations",
+        "operationId": "/booking",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string",
+          "schema": {
+            "$ref": "#/definitions/booking"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "List of available flights",
+            "schema": {
+              "$ref": "#/definitions/booking_succes"
+            }
+          },
+          "404": {
+            "description": "No result found",
+            "schema": {
+              "$ref": "#/definitions/failure"
+            }
+          }
+        }
+      }
+    },
+    "/myflights": {
+      "post": {
+        "tags": [
+          "- Booking Informations (Ticket)"
+        ],
+        "description": "Get Booking informations",
+        "operationId": "/myflights",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "description": "Elements to fetch",
+          "required": true,
+          "type": "string",
+          "schema": {
+            "$ref": "#/definitions/ticket"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "List of available flights",
+            "schema": {
+              "$ref": "#/definitions/ticket_succes"
+            }
+          },
+          "404": {
+            "description": "No result found",
+            "schema": {
+              "$ref": "#/definitions/failure"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "airports": {
+      "properties": {
+        "AiroportName": {
+          "required": true,
+          "type": "string",
+          "example": "Aalborg Airport AMBA"
+        },
+        "IATA": {
+          "required": true,
+          "type": "string",
+          "example": "AAL"
+        },
+        "ICAO": {
+          "required": true,
+          "type": "string",
+          "example": "EKYT"
+        },
+        "Country": {
+          "required": true,
+          "type": "string",
+          "example": "Denmark"
+        }
+      }
+    },
+    "othercompanies": {
+      "properties": {
+        "date": {
+          "required": true,
+          "type": "string",
+          "example": "2017-12-25"
+        },
+        "depart": {
+          "required": true,
+          "type": "string",
+          "example": "CMN"
+        },
+        "destination": {
+          "required": true,
+          "type": "string",
+          "example": "CDG"
+        },
+        "adults": {
+          "required": true,
+          "type": "string",
+          "example": "1"
+        },
+        "childrens": {
+          "required": true,
+          "type": "string",
+          "example": "0"
+        }
+      }
+    },
+    "othercompanies_succes": {
+      "properties": {
+        "flightcarrier": {
+          "required": true,
+          "type": "string",
+          "example": "AT"
+        },
+        "carriername": {
+          "required": true,
+          "type": "string",
+          "example": "Royal Air Maroc"
+        },
+        "flightnumber": {
+          "required": true,
+          "type": "string",
+          "example": "788"
+        },
+        "arrivalTime": {
+          "required": true,
+          "type": "string",
+          "example": "2017-12-25T16:25+01:00"
+        },
+        "departureTime": {
+          "required": true,
+          "type": "string",
+          "example": "2017-12-25T12:15+00:00"
+        },
+        "origin": {
+          "required": true,
+          "type": "string",
+          "example": "CMN"
+        },
+        "destination": {
+          "required": true,
+          "type": "string",
+          "example": "CDG"
+        },
+        "terminal": {
+          "required": true,
+          "type": "string",
+          "example": "A"
+        },
+        "duration": {
+          "required": true,
+          "type": "string",
+          "example": "180"
+        },
+        "totalprice": {
+          "required": true,
+          "type": "string",
+          "example": "180 Euro"
+        }
+
+      }
+    },
+    "failure": {
+      "properties": {
+        "result": {
+          "required": true,
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "letsflyflights": {
+      "properties": {
+        "departure_date": {
+          "required": true,
+          "type": "string",
+          "example": "2018-01-09"
+        },
+        "back_date": {
+          "required": true,
+          "type": "string",
+          "example": "2018-01-09"
+        },
+        "depart": {
+          "required": true,
+          "type": "string",
+          "example": "NCL"
+        },
+        "destination": {
+          "required": true,
+          "type": "string",
+          "example": "DUB"
+        },
+        "personnes": {
+          "required": true,
+          "type": "string",
+          "example": "1"
+        }
+      }
+    },
+    "letsflyflights_succes": {
+      "properties": {
+        "aller": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "required": true,
+                "type": "int",
+                "example": 1
+              },
+              "num": {
+                "required": true,
+                "type": "string",
+                "example": "8721"
+              },
+              "departure": {
+                "required": true,
+                "type": "string",
+                "example": "VDA"
+              },
+              "arrival": {
+                "required": true,
+                "type": "string",
+                "example": "POZ"
+              },
+              "departure_date": {
+                "required": true,
+                "type": "string",
+                "example": "2017-12-0"
+              },
+              "arrival_date": {
+                "required": true,
+                "type": "string",
+                "example": "2017-12-01"
+              },
+              "departure_time": {
+                "required": true,
+                "type": "string",
+                "example": "13:45:00"
+              },
+              "arrival_time": {
+                "required": true,
+                "type": "string",
+                "example": "17:15:00"
+              },
+              "gate": {
+                "required": true,
+                "type": "string",
+                "example": "T"
+              },
+              "price": {
+                "required": true,
+                "type": "string",
+                "example": "EUR 127"
+              },
+              "aircraft": {
+                "required": true,
+                "type": "string",
+                "example": "A380"
+              },
+              "available_seats": {
+                "required": true,
+                "type": "int",
+                "example": "309"
+              }
+            }
+          }
+        },
+        "retour": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "required": true,
+                "type": "int",
+                "example": 1
+              },
+              "num": {
+                "required": true,
+                "type": "string",
+                "example": "8721"
+              },
+              "departure": {
+                "required": true,
+                "type": "string",
+                "example": "VDA"
+              },
+              "arrival": {
+                "required": true,
+                "type": "string",
+                "example": "POZ"
+              },
+              "departure_date": {
+                "required": true,
+                "type": "string",
+                "example": "2017-12-0"
+              },
+              "arrival_date": {
+                "required": true,
+                "type": "string",
+                "example": "2017-12-01"
+              },
+              "departure_time": {
+                "required": true,
+                "type": "string",
+                "example": "13:45:00"
+              },
+              "arrival_time": {
+                "required": true,
+                "type": "string",
+                "example": "17:15:00"
+              },
+              "gate": {
+                "required": true,
+                "type": "string",
+                "example": "T"
+              },
+              "price": {
+                "required": true,
+                "type": "string",
+                "example": "EUR 127"
+              },
+              "aircraft": {
+                "required": true,
+                "type": "string",
+                "example": "A380"
+              },
+              "available_seats": {
+                "required": true,
+                "type": "int",
+                "example": "309"
+              }
+            }
+          }
+        }
+      }
+    },
+    "booking_infos": {
+      "properties": {
+        "flights": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": ["8294", "5858"]
+
+        }
+      }
+    },
+    "booking_infos_succes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "required": true,
+            "type": "int",
+            "example": 1
+          },
+          "num": {
+            "required": true,
+            "type": "string",
+            "example": "8721"
+          },
+          "departure": {
+            "required": true,
+            "type": "string",
+            "example": "VDA"
+          },
+          "arrival": {
+            "required": true,
+            "type": "string",
+            "example": "POZ"
+          },
+          "departure_date": {
+            "required": true,
+            "type": "string",
+            "example": "2017-12-0"
+          },
+          "arrival_date": {
+            "required": true,
+            "type": "string",
+            "example": "2017-12-01"
+          },
+          "departure_time": {
+            "required": true,
+            "type": "string",
+            "example": "13:45:00"
+          },
+          "arrival_time": {
+            "required": true,
+            "type": "string",
+            "example": "17:15:00"
+          },
+          "gate": {
+            "required": true,
+            "type": "string",
+            "example": "T"
+          },
+          "price": {
+            "required": true,
+            "type": "string",
+            "example": "EUR 127"
+          },
+          "aircraft": {
+            "required": true,
+            "type": "string",
+            "example": "A380"
+          },
+          "available_seats": {
+            "required": true,
+            "type": "int",
+            "example": "309"
+          }
+        }
+      }
+    },
+    "booking": {
+      "properties": {
+        "bookinfo": {
+          "properties": {
+            "numVol": {
+              "required": true,
+              "type": "string",
+              "example": "5858"
+            },
+            "title": {
+              "required": true,
+              "type": "string",
+              "example": "Title"
+            },
+            "firstname": {
+              "required": true,
+              "type": "string",
+              "example": "Jack"
+            },
+            "lastname": {
+              "required": true,
+              "type": "string",
+              "example": "Smoke"
+            },
+            "email": {
+              "required": true,
+              "type": "string",
+              "example": "jack.smoke@gmail.com"
+            },
+            "passport_num": {
+              "required": true,
+              "type": "string",
+              "example": "178GJ2"
+            },
+            "address": {
+              "required": true,
+              "type": "string",
+              "example": "US Texas Quins 189 28 9"
+            },
+            "adress_2": {
+              "required": true,
+              "type": "string",
+              "example": "US,Texas,Quins,189,28,9"
+            },
+            "phone": {
+              "required": true,
+              "type": "string",
+              "example": "668654809"
+            },
+            "country": {
+              "required": true,
+              "type": "string",
+              "example": "United State"
+            },
+            "city": {
+              "required": true,
+              "type": "string",
+              "example": "Texas"
+            },
+            "passport_country": {
+              "required": true,
+              "type": "string",
+              "example": "United State"
+            },
+            "passport_valid_until": {
+              "required": true,
+              "type": "string",
+              "example": "2019-02-29"
+            }
+          }
+        }
+      }
+    },
+    "booking_succes": {
+      "properties": {
+        "bookid": {
+          "required": true,
+          "type": "string",
+          "example": "TYK9289"
+        }
+      }
+    },
+    "api": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "num": {
+            "required": true,
+            "type": "string",
+            "example": "8721"
+          },
+          "departure": {
+            "required": true,
+            "type": "string",
+            "example": "VDA"
+          },
+          "arrival": {
+            "required": true,
+            "type": "string",
+            "example": "POZ"
+          },
+          "departure_date": {
+            "required": true,
+            "type": "string",
+            "example": "2017-12-0"
+          },
+          "arrival_date": {
+            "required": true,
+            "type": "string",
+            "example": "2017-12-01"
+          },
+          "departure_time": {
+            "required": true,
+            "type": "string",
+            "example": "13:45:00"
+          },
+          "arrival_time": {
+            "required": true,
+            "type": "string",
+            "example": "17:15:00"
+          },
+          "gate": {
+            "required": true,
+            "type": "string",
+            "example": "T"
+          },
+          "price": {
+            "required": true,
+            "type": "string",
+            "example": "EUR 127"
+          },
+          "aircraft": {
+            "required": true,
+            "type": "string",
+            "example": "A380"
+          },
+          "available_seats": {
+            "required": true,
+            "type": "int",
+            "example": "309"
+          }
+        }
+      }
+    },
+    "ticket": {
+      "properties": {
+        "reservationID": {
+          "required": true,
+          "type": "string",
+          "example": "20kAmDX1"
+        }
+      }
+    },
+    "ticket_succes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "numVol": {
+            "required": true,
+            "type": "string",
+            "example": "5858"
+          },
+          "title": {
+            "required": true,
+            "type": "string",
+            "example": "Title"
+          },
+          "firstname": {
+            "required": true,
+            "type": "string",
+            "example": "Jack"
+          },
+          "lastname": {
+            "required": true,
+            "type": "string",
+            "example": "Smoke"
+          },
+          "email": {
+            "required": true,
+            "type": "string",
+            "example": "jack.smoke@gmail.com"
+          },
+          "passport_num": {
+            "required": true,
+            "type": "string",
+            "example": "178GJ2"
+          },
+          "address": {
+            "required": true,
+            "type": "string",
+            "example": "US Texas Quins 189 28 9"
+          },
+          "adress_2": {
+            "required": true,
+            "type": "string",
+            "example": "US,Texas,Quins,189,28,9"
+          },
+          "phone": {
+            "required": true,
+            "type": "string",
+            "example": "668654809"
+          },
+          "country": {
+            "required": true,
+            "type": "string",
+            "example": "United State"
+          },
+          "city": {
+            "required": true,
+            "type": "string",
+            "example": "Texas"
+          },
+          "passport_country": {
+            "required": true,
+            "type": "string",
+            "example": "United State"
+          },
+          "passport_valid_until": {
+            "required": true,
+            "type": "string",
+            "example": "2019-02-29"
+          },
+          "num": {
+            "required": true,
+            "type": "string",
+            "example": "8721"
+          },
+          "departure": {
+            "required": true,
+            "type": "string",
+            "example": "VDA"
+          },
+          "arrival": {
+            "required": true,
+            "type": "string",
+            "example": "POZ"
+          },
+          "departure_date": {
+            "required": true,
+            "type": "string",
+            "example": "2017-12-0"
+          },
+          "arrival_date": {
+            "required": true,
+            "type": "string",
+            "example": "2017-12-01"
+          },
+          "departure_time": {
+            "required": true,
+            "type": "string",
+            "example": "13:45:00"
+          },
+          "arrival_time": {
+            "required": true,
+            "type": "string",
+            "example": "17:15:00"
+          },
+          "gate": {
+            "required": true,
+            "type": "string",
+            "example": "T"
+          },
+          "price": {
+            "required": true,
+            "type": "string",
+            "example": "EUR 127"
+          },
+          "aircraft": {
+            "required": true,
+            "type": "string",
+            "example": "A380"
+          },
+          "available_seats": {
+            "required": true,
+            "type": "int",
+            "example": "309"
+          }
+        }
+      }
+    }
+  }
+}

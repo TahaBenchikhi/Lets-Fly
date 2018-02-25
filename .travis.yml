@@ -1,0 +1,60 @@
+sudo: required
+language: node_js
+node_js:
+- stable
+jobs:
+  include:
+  - stage: Test e2e
+    services:
+      - mysql
+    addons:
+      apt:
+        sources:
+        - google-chrome
+        packages:
+        - google-chrome-stable
+    before_install:
+      - mysql -u root --password='' < db/scriptSchema.sql
+    before_script:
+      - export DISPLAY=:99.0
+      - sudo sh -e /etc/init.d/xvfb start
+      - sleep 3 # give xvfb some time to start
+      - cd api
+      - npm install
+      - npm run start-app # start a Web server
+      - cd ../web-app
+      - npm install
+      - sleep 3 # give Web server some time to bind to sockets, etc
+    script: npm run e2e
+  - stage: Deploy to git
+    env:
+    - PROD=true
+    script: echo "Deploying to git"
+    before_deploy:
+    - git tag "release_$(date +"%m_%d_%Y")"
+    - tar cvf release.tgz .
+    - ls -la
+    deploy:
+    - provider: releases
+      api-key: b83d30449bcd16df7b66bac56632055434b0aa4b
+      file: release.tgz
+      skip_cleanup: true
+      on:
+        branch: master
+  - stage: Deploy to heroku
+    env:
+    - PROD=true
+    script: echo "Deploying to herokuu"
+    before_deploy:
+    - cd web-app
+    - npm install
+    - npm run build
+    - cd ../api
+    deploy:
+    - provider: heroku
+      api_key:
+        secure: RWXoubEWfivRtZbpXQVA/Lb6kxkucBF+u25sLqqPt3nzfCAcesR2YXkBLTNbAjgP54O5auAIzKf/DXv4iVmR7ldUrJ8ktoffK7nnbIenoc7sywDh9tsK4AkL1cCcb2nJWrloGXYRAoTBvf7ddRBMN9WChsSLzlHVieE13A/FUz5J0Q1QZl1kVghDLCxtmqcWvI0rRU30XtBBZq+Ya8M2W72FTno0bO8uyc+of0uNFF5PjcoZ3QdptRBDIzt9au0gXn2Sl/sCX3Z/2xWw1wc4mIEHqHd3JydmGA1ipqL3e0hT9BmXdSsjCC86YiCa8kJU7HgKrJQF8qtKV8TXNsky7c+HfCAa5rj/fkT0oQo9aHkgrQ2epUh2+I6lziN6wv1W5FsqL2nKYRQ9xgJtrKx05HBnTzjzAIkaK9VokyAn/YdkOzGdCdLQs3NdezjKLB6dPDBiVObzWr5/cEfVrGdK/AmlLNUrI5d+/2lgbKYSxbn6ZXDeksSGn80YF+WYnzdw3XusPH1tEFcdGUEOzN+gc9DjMlRj3/+3JpcNkBkFEIjEV4Z3DKt6ssnL/DCAaMcI3WavCiB1xicKR7KlIF/DxjgV7lEFFK0XhGHaOEUZeOXwE7Fe/DS05LOiunY6dp77cMaj8VJKQWcYo8fxtnSSnhOUbnRWNHeNr/CLx0jHmV0=
+      app: fierce-ravine-66031
+      skip_cleanup: true
+      on:
+        branch: sprint2

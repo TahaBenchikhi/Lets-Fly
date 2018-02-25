@@ -1,0 +1,66 @@
+.form-input {
+  width: 100%;
+}
+
+.white-font{
+  color: white;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.submit{
+  float: right;
+}
+
+.dropdown-container {
+  margin-top: -20px;
+  position: absolute;
+  z-index: 999;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.half-width{
+  width: 50%;
+}
+
+.errormsg{
+  color: red;
+  margin-top: -15px!important;
+  font-size: 9pt;
+}
+
+.searchA{
+      background: none;
+      border: none !important;
+  }
+
+  .searchA:active{
+    background: none;
+    border: none !important;
+}
+.offre-card-icon{
+  position: absolute;
+  width: 80px;
+  right: -40px;
+  top:-35px;
+  transform: rotate(35deg);
+
+}
+
+.offre-before-card-icon{
+  position: absolute;
+  width: 80px;
+  top: 205px;
+
+}

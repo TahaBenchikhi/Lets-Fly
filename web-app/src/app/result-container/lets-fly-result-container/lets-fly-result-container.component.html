@@ -1,0 +1,16 @@
+<div *ngIf="data.aller && toggleFlights">
+  <div class="result-letsfly-container search-item title" *ngIf="data.retour && data.retour.length > 0" >
+    <a class="waves-effect waves-light btn btn-large disabled">First fly</a>
+  </div>
+  <app-one-flight-container *ngFor="let flight of data.aller"
+                            [onedata]="flight"
+                            (flightSelected)="toggleit($event)" [is_a_return_flight]="false"></app-one-flight-container>
+</div>
+<div *ngIf="data.retour && data.retour.length > 0 && !toggleFlights">
+  <div class="result-letsfly-container search-item title" >
+    <a class="waves-effect waves-light btn btn-large disabled">Return fly</a>
+  </div>
+  <app-one-flight-container *ngFor="let flight of data.retour"
+                            [onedata]="flight"
+                            (flightSelected)="toggleit($event)" [is_a_return_flight]="true"></app-one-flight-container>
+</div>

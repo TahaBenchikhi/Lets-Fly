@@ -1,0 +1,12 @@
+.search-result{
+  text-align: center;
+  background-color: unset;
+  color: rgba(0,0,0,.70);
+}
+
+.search-data-title{
+  @media only screen and (max-width: 600px) {
+      font-size:14px !important;
+      line-height:125% !important;
+    }
+}

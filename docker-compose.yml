@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    db:
+        build: ./db
+        container_name: db-flights
+        volumes:
+          - db-data:/var/lib/mysql
+        ports:
+          - "3305:3305"
+        restart: always
+    api:
+        build: ./api
+        depends_on:
+        - db
+        volumes:
+          - "./app:/src/app"
+        ports:
+          - "8081:8081"
+        container_name: api-flights
+        restart: always
+    web:
+        build: ./web-app
+        depends_on:
+        - api
+        ports:
+          - "3400:80"
+        container_name: web-flights
+
+volumes:
+    db-data:
+

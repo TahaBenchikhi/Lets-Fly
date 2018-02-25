@@ -1,0 +1,43 @@
+.time{
+  font-size: 8pt;
+  text-align: center;
+}
+
+.cities{
+  text-align: center;
+}
+
+.mat-card{
+  margin-bottom: 10px!important;
+}
+
+.one-flight-data{
+  @media only screen and (max-width: 600px) {
+    font-size:14px !important;
+    line-height:125% !important;
+  }
+}
+.one-flight-data-iata{
+    font-size:11px !important;
+    line-height:125% !important;
+    color: gray;
+}
+
+.btn-small {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
+}
+
+.remove-bottom-margin{
+  margin-bottom: 0;
+}
+
+.logo {
+  max-height: 100px;
+  max-width: 100%;
+}
+
+.card-action-right {
+  float: right;
+}

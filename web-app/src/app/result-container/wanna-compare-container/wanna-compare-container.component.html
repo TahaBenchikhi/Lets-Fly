@@ -1,0 +1,13 @@
+<div *ngIf="toggle_flights == 0">
+  <div class="result-letsfly-container search-item title">
+    <button type="button" class="waves-effect waves-light btn btn-large" *ngIf='send.get_Other_Companies_Secondway_Data()' (click)='changepage(1)'>Show back flights</button>
+  </div>
+  <app-one-flight-container *ngFor="let single_first_way_data of first_way_data" (flightSelected)="get_letsfly_flight($event)"[onedata]="single_first_way_data" [is_a_return_flight]="false"></app-one-flight-container>
+</div>
+<!-- (other_companies_status)="changepage($event)" -->
+<div *ngIf="toggle_flights == 1">
+  <div class="result-letsfly-container search-item title">
+    <button type="button" class="waves-effect waves-light btn btn-large" (click)='changepage(0)'>Show return flights</button>
+  </div>
+  <app-one-flight-container *ngFor="let single_second_way_data of second_way_data" (flightSelected)="get_letsfly_flight($event)" [onedata]="single_second_way_data" [is_a_return_flight]="true"></app-one-flight-container>
+</div>

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s12 m12">
+    <div class="card orange lighten-5">
+      <div class="card-content center">
+          <div class="col s12" ngClass="">
+            <span class="card-title search-data-title">
+              {{ data.allfrom }}<br> <div class="chip orange"> {{ data.departuredate }} </div>
+              <br><i *ngIf="data.backdate.toString() !== '0000-00-00'" class="material-icons">arrow_back</i><i
+              class="material-icons">arrow_forward</i><br>
+              {{ data.allto }} <br><div class="chip orange" *ngIf="data.backdate.toString() !== '0000-00-00'"> {{ data.backdate }} </div></span>
+          </div>
+      </div>
+      <div class="card-tabs">
+        <app-result-tabs-container></app-result-tabs-container>
+      </div>
+    </div>
+  </div>

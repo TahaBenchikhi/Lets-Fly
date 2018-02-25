@@ -1,0 +1,212 @@
+<img src="../../../../assets/images/noel/christmas-tree.png" alt="" class="offre-before-card-icon">
+
+<div class="row">
+  <div class="col s12">
+    <div class="card horizontal">
+      <img src="../../../../assets/images/noel/santa-claus.png" alt="" class="offre-card-icon">
+      <div class="card-stacked">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s12 m12">
+              <div class="switch">
+                <label>
+                  One way
+                  <input type="checkbox" name="round"
+                         (change)="round_trip = !round_trip;toggleRoundTrip();Tosend.backdate = 00-00-0000;roundtrip=false"
+                         [checked]="round_trip">
+                  <span class="lever"></span>
+                  Round trip
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 input-field" [ngClass]="(cols == 4) ? 'm3':'m4'">
+              <input name="from" [(ngModel)]='Tosend.from' class="autocomplete" (keyup)="OnkeyFrom($event)"
+                     id="from" type="text"/>
+              <label for="from">Departure city</label>
+              <ul class="dropdown-container collection with-header" id="ulfrom">
+                <div *ngFor="let from of FData;let i=index">
+                  <li *ngIf="i<5" #depart class="collection-item" id="lifrom"
+                      (click)="Selected = true;FData = [];Tosend.from = depart.innerText;">
+                    {{from.IATA}},{{from.Country}},{{from.AiroportName}}
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div class="col s12 input-field" [ngClass]="(cols == 4) ? 'm3':'m4'">
+              <input name="to" type="text" autocomplete="off" [(ngModel)]='Tosend.to'
+                     class="form-control search-input dropdown"
+                     (keyup)="OnkeyWhere($event)"
+                     id="to"/>
+              <label for="to">Arrival city</label>
+              <ul class="dropdown-container collection with-header" id="ulto">
+                <div *ngFor="let where of WData;let i=index">
+                  <li *ngIf="i<5" #destination class="collection-item" id="lito"
+                      (click)="Selected = true;WData = [];Tosend.to = destination.innerText;">
+                    {{where.IATA}},{{where.Country}},{{where.AiroportName}}
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div class="col s12 input-field" [ngClass]="(cols == 4) ? 'm3':'m4'">
+              <input type="text" name="departuredate"
+                     [(ngModel)]='Tosend.departuredate'
+                     materialize="pickadate"
+                     [materializeActions]="birthDateActions"
+                     [materializeParams]="[{format: 'yyyy-mm-dd'}]"
+                     id="departureDate"
+              >
+              <label for="departureDate">Departure Date</label>
+            </div>
+            <div class="col s12 m3 input-field" *ngIf="round_trip">
+              <input type="text" name="backdate"
+                     [(ngModel)]='Tosend.backdate'
+                     materialize="pickadate"
+                     [materializeActions]="birthDateActions"
+                     [materializeParams]="[{format: 'yyyy-mm-dd'}]"
+                     id="backDate" value="0000-00-00">
+              <label for="backDate">Back Date</label>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="left" [ngClass]="findclicked ? 'half-width' : 'full-width'">
+                <input *ngIf='findclicked' id="FlightInput"
+                       type="text" placeholder="Flight Number" [(ngModel)]="reservationID"
+                       [ngModelOptions]="{standalone: true}" required
+                       [ngClass]="noFlightFound? 'invalid' : ''" class="validate" />
+                <div class="errormsg" *ngIf="noFlightFound">
+                  No flight found with this reservation number
+                </div>
+              </div>
+                <a *ngIf='!findclicked' class="waves-effect waves-light blue btn full-width" (click)="onFindClick()">My flights</a>
+                <a *ngIf='findclicked' class="waves-effect waves-light orange btn half-width"  (click)="findFlight()">Go!</a>
+
+            </div>
+            <div class="col s12 m6">
+              
+              <button name="searchA" class="waves-effect waves-light btn right horizontal full-width" (click)="SendData()">
+                  Let's get
+                lost </button> 
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--form id="search-form">
+  <div class="row">
+    <div class="col-md-12 home-form-container">
+      <div class="row">
+        <div class="col-md-3">
+          <span class="search-input-number">01</span>
+          <span class="search-input-title">What?</span>
+          <br>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label mini-label">
+                <input class="form-check-input"  type="radio" name="trip" id="oneway"
+                  value="oneway" (change)="round_trip = !round_trip;Tosend.backdate = 00-00-0000;roundtrip=false" [checked]="!round_trip"> One-way trip
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label mini-label">
+              <input class="form-check-input" type="radio" name="trip" id="roundtrip" value="roundtrip" (change)="round_trip = !round_trip;roundtrip=true"
+                  [checked]="round_trip"> Round-trip
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 search-input-border-left">
+          <span class="search-input-number">02</span>
+          <span class="search-input-title">From? Where to?</span>
+          <br>
+          <div class="form-group">
+            <input name="from" autocomplete="off" [(ngModel)]='Tosend.from' class="form-control search-input dropdown" (keyup)="OnkeyFrom($event)"
+              placeholder="from ?" id="from" />
+
+            <div>
+              <ul class="dropdown-content" id="ulfrom">
+                <div *ngFor="let from of FData;let i=index">
+<li *ngIf="i<5" #depart class="dropdown-element" id="lifrom" (click)="Selected = true;FData = [];Tosend.from = depart.innerText;">
+{{from.IATA}},{{from.Country}},{{from.AiroportName}}</li>
+
+
+
+
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+            <input name="to" autocomplete="off" [(ngModel)]='Tosend.to' class="form-control search-input dropdown" (keyup)="OnkeyWhere($event)"
+              placeholder="to ?" id="to" />
+            <div>
+              <ul class="dropdown-content"  id="ulto">
+                <div *ngFor="let where of WData;let i=index">
+<li *ngIf="i<5" #destination class="dropdown-element" id="lito" (click)="Selected = true;WData = [];Tosend.to = destination.innerText;">{{where.IATA}},{{where.Country}},{{where.AiroportName}}</li>
+
+
+
+
+                </div>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-3 search-input-border-left">
+          <span class="search-input-number">03</span>
+          <span class="search-input-title">When?</span>
+          <br>
+          <div class="form-group">
+            <input type="date" name="departuredate"
+                   [(ngModel)]='Tosend.departuredate'
+                   class="form-control search-input"
+                   id="departureDate"
+                   placeholder="12-12-2017">
+          </div>
+          <div class="form-group" *ngIf="round_trip">
+            <input type="date" name="backdate" (change)="roundtrip=false" [(ngModel)]='Tosend.backdate' class="form-control search-input"
+              id="backDate" placeholder="01-03-2018">
+
+          </div>
+        </div>
+        <div class="col-md-2 search-input-border-left">
+          <span class="search-input-number">04</span>
+          <span class="search-input-title">Who?</span>
+          <br>
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <label for="adults" class="search-input">Adults</label>
+                <input type="number" name="adults" [(ngModel)]='Tosend.adults' class="form-control search-input" id="adults" value="0" min="1"
+                  max="5">
+              </div>
+              <div class="col">
+                <label for="childrens" class="search-input">Childrens</label>
+                <input type="number" name="childrens" [(ngModel)]='Tosend.childrens' class="form-control search-input" id="childrens" value="0"
+                  min="0" max="5">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="alert alert-danger" role="alert" id='error' *ngIf='errors'>Please write a valid inputs</div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 home-form-button-container">
+      <button type="button" class="btn btn-primary float-right btn-lg" (click)="SendData()">Let's get lost</button>
+    </div>
+  </div>
+</--form-->

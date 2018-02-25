@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-content">
+    <div class="row remove-bottom-margin valign-wrapper">
+      <div class="col s3 m2 valign-wrapper">
+        <img *ngIf="onedata.image"
+             src="https://github.com/TahaBenchikhi/Web_images/blob/master/{{onedata.image}}?raw=true"
+             alt="" class="logo">
+        <img *ngIf="!onedata.carriername" src="../../../assets/images/logos/Plane-Logo.png" alt="" class="logo">
+      </div>
+      <div class="col s9 m10 valign-wrapper">
+        <div class="row remove-bottom-margin col s12 valign-wrapper center">
+          <div class="col s4 center">
+              <span class="one-flight-data">{{onedata.departure_time}}</span><br>
+            <span class="one-flight-data" *ngIf="!is_a_return_flight">{{DataRecieved.from}}</span>
+            <span class="one-flight-data" *ngIf="is_a_return_flight"> {{DataRecieved.to}} </span><br>
+            <span class="one-flight-data-iata hide-on-small-only" *ngIf="!is_a_return_flight">{{DataRecieved.allfrom}}</span>
+            <span class="one-flight-data-iata hide-on-small-only" *ngIf="is_a_return_flight"> {{DataRecieved.allto}} </span>
+          </div>
+          <div class="col s4 center"><div class="material-icons">flight_takeoff</div>
+            <div class="one-flight-data-iata">{{onedata.duration}} </div>
+          </div>
+          <div class="col s4 center">
+              <span class="one-flight-data"> {{onedata.arrival_time}}</span><br>
+              <span class="one-flight-data" *ngIf="!is_a_return_flight"> {{DataRecieved.to}} </span>
+              <span class="one-flight-data" *ngIf="is_a_return_flight"> {{DataRecieved.from}} </span><br>
+              <span class="one-flight-data-iata hide-on-small-only" *ngIf="!is_a_return_flight"> {{DataRecieved.allto}} </span>
+              <span class="one-flight-data-iata hide-on-small-only" *ngIf="is_a_return_flight"> {{DataRecieved.allfrom}} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-action">
+    <span class="new badge orange" data-badge-caption="">{{onedata.price}}</span>
+    <a *ngIf="!onedata.link" (click)="bookThisFlight(trip)">Reserver</a>
+    <a *ngIf="onedata.link" href="{{onedata.link}}">Reserver</a>
+  </div>
+</div>

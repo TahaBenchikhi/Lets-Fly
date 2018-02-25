@@ -1,0 +1,101 @@
+<app-header></app-header>
+
+<form (ngSubmit)="onBooking()" ngNativeValidate>
+  <div class="row">
+    <div class="col s12 m8">
+      <div class="card col m12">
+        <div class="card-content row">
+          <div class="col s12 m6">
+            <div class="row">
+              <span class="card-title">Passenger details</span>
+              <div class="col m4 s12">
+                <div class="input-field">
+                    <input type="text" name="title" id="title" [(ngModel)]="book_aller.title" required/>
+                  <label for="title">Title</label>
+                </div>
+              </div>
+              <div class="col m8 s12">
+                <div class="input-field">
+                  <input name="name" id="firstname" type="text" [(ngModel)]="book_aller.firstname" required/>
+                  <label for="firstname">First name</label> 
+                </div>
+              </div>
+              <div class="col m12 s12">
+                <div class="input-field">
+                  <input name="surname" id="lastname" type="text" [(ngModel)]="book_aller.lastname" required/>
+                  <label for="lastname">Last name</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <span class="card-title">Passport details</span>
+            <div class="input-field">
+              <input name="passportNumber" id="number" type="text" [(ngModel)]="book_aller.passport_num" required/>
+              <label for="number">Number</label>
+            </div>
+            <div class="input-field">
+              <input name="passportCountry" id="passportCountry" type="text" [(ngModel)]="book_aller.passport_country" required/>
+              <label for="passportCountry">Passport country</label>
+            </div>
+            <div class="input-field">
+              <input name="validUntil"
+                     [(ngModel)]="book_aller.passport_valid_until"
+                     id="validUntil"
+                     type="text" onfocus="(this.type='date')"
+                     required/>
+              <label for="validUntil">Valid Until</label>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <span class="card-title">Contact</span>
+            <div class="input-field">
+              <input name="email" id="email" type="text" [(ngModel)]="book_aller.email" required/>
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input name="repeateEmail" id="repeateEmail" type="text" [(ngModel)]="book_aller.email" required/>
+              <label for="repeateEmail">Email</label>
+            </div>
+            <div class="input-field">
+              <input name="phone" id="phone" type="number" [(ngModel)]="book_aller.phone" required/>
+              <label for="phone">Phone</label>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <span class="card-title">Address</span>
+            <div class="input-field">
+              <input name="address" id="address" type="text" [(ngModel)]="book_aller.address" required/>
+              <label for="address">Address 1</label>
+            </div>
+            <div class="input-field">
+              <input name="address2" id="address2" type="text" [(ngModel)]="book_aller.address_2"/>
+              <label for="address2">Address 2</label>
+            </div>
+            <div class="input-field">
+              <input name="country" id="country" type="text" [(ngModel)]="book_aller.country" required/>
+              <label for="country">Country</label>
+            </div>
+            <div class="input-field">
+              <input name="city" id="city" type="text" [(ngModel)]="book_aller.city" required/>
+              <label for="city">City</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="col-md-4 col-sm-12 recap">
+
+        <app-recap *ngIf='flightsInfo.length > 0' [flightInfo]=flightsInfo[0]></app-recap>
+        <app-recap *ngIf='book_retour && flightsInfo.length > 0' [flightInfo]=flightsInfo[1]></app-recap>
+
+      </div>
+    </div>
+    <div class="col s12 m8">
+
+      <a (click)="onBooking()" class="btn btn-primary btn-large right">Pay and get lost</a>
+    </div>
+  </div>
+</form>
+
